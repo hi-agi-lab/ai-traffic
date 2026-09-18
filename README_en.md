@@ -51,7 +51,7 @@ existing AID system (S-adapter) instead of rebuilding one.
 
 | Module | Role | Question it answers |
 | --- | --- | --- |
-| Detection base (WeDetect open-vocabulary) | vehicles / debris / person-down / vehicle damage | "Is there anything decidable in the frame?" (productionized domain prompts: `damaged car / fallen motorcycle / scattered rubble on road…`) |
+| Detection base (AI-Detect open-vocabulary) | vehicles / debris / person-down / vehicle damage | "Is there anything decidable in the frame?" (productionized domain prompts: `damaged car / fallen motorcycle / scattered rubble on road…`) |
 | AccidentScoringEngine | composite accident scoring | "① abnormal stop **and** ② debris → suspected; +③ person-down / ④ damage → probable; ③ escalates risk to 4 immediately. Are the features still there after 3 minutes?" |
 | FODEngine | dual-route debris | "Is the new stationary small object inside the lane ROI confirmed yet? Did the drop statically confirm within 120s?" (upgrade merges two evidence segments) |
 | CongestionMonitor | congestion + disambiguation context | "Is the zone mean-speed below threshold sustainably? Has recovery lasted 120s?" — queue state feeds the accident channel in real time |
@@ -127,12 +127,12 @@ A suspected-accident timeline (times illustrative, logic real):
 | 09:02:41 | Person-down escalation | ③ hit → risk **escalates to 4 immediately** |
 | 09:05:10 | Confirmation window | features sustained ≥3min → **confirmed** (same event key, platform merges evidence) |
 | 09:08:00 | Vehicle departs | features gone ≥30s → auto-closed (confirmed=false review suggestion) |
-| Post-incident | Vehicle image-search | suspect-vehicle crop indexed into WeDetect-Uni → cross-camera point-timeline |
+| Post-incident | Vehicle image-search | suspect-vehicle crop indexed into AI-Recognize → cross-camera point-timeline |
 
 ## 7. Key Metrics
 
 Benchmark: **130 Baidu-searched images (debris 34 / accident 34 / congestion
-26 / negative 24 / night 12, content-hash deduplicated), WeDetect-base +
+26 / negative 24 / night 12, content-hash deduplicated), AI-Detect (base weights) +
 domain prompts @0.15, image-level detection + full TrafficRunner chain
 (features → engines → Clue → contract validation)**, see the
 [measurement report](../../demo_outputs/traffic_image_test/REPORT.md).
@@ -200,8 +200,8 @@ python demo_outputs/traffic_image_test/run_e2e_after_fix.py
 ## 10. Scope & Limitations
 
 - **Runtime-plane components not wired yet**: RTSP/GB28181 frame sources,
-  WeDetect-Ref two-stage confirmation, evidence store, camera health checks,
-  WeDetect-Uni vehicle image-search, and the 122 dual-source adapter — the
+  AI-Reference two-stage confirmation, evidence store, camera health checks,
+  AI-Recognize vehicle image-search, and the 122 dual-source adapter — the
   platform-side FR-COM-01~11 components depend on the WeKnora platform and
   perimeter_guard-style skeletons; this delivery is the decision layer plus
   a single-channel orchestrator (`runner.py`).

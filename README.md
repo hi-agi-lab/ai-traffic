@@ -49,7 +49,7 @@
 
 | 模块 | 职责 | 回答的问题 |
 | --- | --- | --- |
-| 检测底座（WeDetect 开放词汇） | 车辆/散落物/倒地人/车体异常检出 | "画面里有可判定的对象吗？"（领域提示词产线化：`damaged car / fallen motorcycle / scattered rubble on road…`） |
+| 检测底座（AI-Detect 开放词汇） | 车辆/散落物/倒地人/车体异常检出 | "画面里有可判定的对象吗？"（领域提示词产线化：`damaged car / fallen motorcycle / scattered rubble on road…`） |
 | AccidentScoringEngine | 事故复合评分 | "①异常停车 **且** ②碎屑 → 疑似；+③倒地人/④车体异常 → 较可能；③命中 risk 即升 4。3 分钟后特征还在吗？" |
 | FODEngine | 遗撒双路线 | "车道内新增的静止小目标确认了吗？掉落 120s 内路面静态确认了吗？"（升级合并串联两段证据） |
 | CongestionMonitor | 拥堵+消歧上下文 | "统计区均速持续低于阈值吗？恢复满 120s 了吗？"——排队态实时供事故通道消歧 |
@@ -116,12 +116,12 @@
 | 09:02:41 | 涉人升级 | ③倒地人命中 → risk **即升 4**，不等确认窗 |
 | 09:05:10 | 持续确认 | 特征持续 ≥3min → **confirmed**（同事件键，平台合并证据） |
 | 09:08:00 | 车辆驶离 | 特征消失 ≥30s → 自动关闭（confirmed=false 复核建议） |
-| 案后 | 以图搜车 | 嫌疑车 crop 入 WeDetect-Uni 索引 → 沿途点位-时间线（遗撒串联/逃逸辅助） |
+| 案后 | 以图搜车 | 嫌疑车 crop 入 AI-Recognize 索引 → 沿途点位-时间线（遗撒串联/逃逸辅助） |
 
 ## 7. 关键指标
 
 基准口径：**130 张百度图片（散落物 34 / 事故 34 / 拥堵 26 / 负样本 24 /
-夜间 12，内容哈希去重），WeDetect-base + 领域提示词 @0.15，图像级检出 +
+夜间 12，内容哈希去重），AI-Detect（base 权重） + 领域提示词 @0.15，图像级检出 +
 TrafficRunner 全链路（特征层→引擎→Clue→契约校验）**，详见
 [实测报告](../../demo_outputs/traffic_image_test/REPORT.md)。
 
@@ -184,8 +184,8 @@ python demo_outputs/traffic_image_test/run_e2e_after_fix.py   # 全链路复测
 
 ## 10. 范围与限制
 
-- **运行面组件未接线**：RTSP/GB28181 帧源、WeDetect-Ref 二段确认、证据
-  落盘、相机健康校验、WeDetect-Uni 以图搜车、交管 122 双源适配器——
+- **运行面组件未接线**：RTSP/GB28181 帧源、AI-Reference 二段确认、证据
+  落盘、相机健康校验、AI-Recognize 以图搜车、交管 122 双源适配器——
   设计文档 FR-COM-01~11 的平台侧组件依赖 WeKnora 平台与 perimeter_guard
   同构骨架，当前交付为决策层 + 单通道编排（`runner.py`）。
 - **跟踪为质心法**：`runner.CentroidTracker` 为注入式占位，生产环境替换
