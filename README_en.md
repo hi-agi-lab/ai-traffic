@@ -10,6 +10,9 @@
 ![tests](https://img.shields.io/badge/tests-40%20passed-brightgreen)
 ![license](https://img.shields.io/badge/license-Commercial-blue)
 
+[![powered by AutoVision](https://img.shields.io/badge/powered%20by-AutoVision-0FDC78)](https://github.com/hi-agi-lab/AutoVision)
+[![pypi](https://img.shields.io/pypi/v/autovision-framework)](https://pypi.org/project/autovision-framework/)
+
 English | **[简体中文](README.md)**
 
 <img src="images/demo_pipeline.gif" alt="Pipeline: frame → open-vocabulary detection with domain prompts → lane ROI + FOD static confirmation → composite accident scoring → confirmation window → confirmed clue" width="760px"/>
@@ -228,3 +231,7 @@ and are **not distributed with the repository**; `detections_v3.json` /
 "suspected/probable" and never constitutes accident determination or law-
 enforcement evidence; accident imagery is restricted to authorized
 traffic-authority/emergency roles with audited export.
+
+---
+
+The detection backbone, streaming inference runtime, and export chain of this solution are provided by the open-source framework [AutoVision](https://github.com/hi-agi-lab/AutoVision) (`pip install autovision-framework`); see the [integration design](https://hi-agi-lab.github.io/AutoVision/ecosystem/) for details.

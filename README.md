@@ -11,6 +11,9 @@
 ![tests](https://img.shields.io/badge/tests-40%20passed-brightgreen)
 ![license](https://img.shields.io/badge/license-Commercial-blue)
 
+[![powered by AutoVision](https://img.shields.io/badge/powered%20by-AutoVision-0FDC78)](https://github.com/hi-agi-lab/AutoVision)
+[![pypi](https://img.shields.io/pypi/v/autovision-framework)](https://pypi.org/project/autovision-framework/)
+
 **[English](README_en.md)** | 简体中文
 
 <img src="images/demo_pipeline.gif" alt="路面管线: 取帧 → 领域提示词开放词汇检测 → 车道ROI+FOD静态确认 → 事故复合评分(①+②→疑似, ③→risk4) → 持续确认窗 → confirmed 线索" width="760px"/>
@@ -204,3 +207,7 @@ python demo_outputs/traffic_image_test/run_e2e_after_fix.py   # 全链路复测
 仅供研究），**不随仓库分发**；`detections_v3.json` / `e2e_after_fix.json`
 与评估报告随仓库提供。系统输出"疑似/较可能"，不构成事故认定或执法证据；
 事故当事人影像仅向交管/应急授权角色开放，导出审批留痕。
+
+---
+
+本方案的检测底座、流式推理运行时与导出链路由开源框架 [AutoVision](https://github.com/hi-agi-lab/AutoVision) 提供（`pip install autovision-framework`）；接入设计见[《行业方案接入》](https://hi-agi-lab.github.io/AutoVision/ecosystem/)。
