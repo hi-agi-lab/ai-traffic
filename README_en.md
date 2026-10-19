@@ -5,7 +5,6 @@
 **Three-domain traffic incident video analytics: road debris (FOD) + composite accident scoring with graded events + congestion monitoring. Suspected/confirmed two-tier claims — determination authority stays with traffic police.**
 
 ![python](https://img.shields.io/badge/python-3.8%2B-blue)
-![ci](https://img.shields.io/badge/CI-pending-lightgrey)
 ![deps](https://img.shields.io/badge/core%20deps-numpy-orange)
 ![tests](https://img.shields.io/badge/tests-40%20passed-brightgreen)
 ![license](https://img.shields.io/badge/license-Commercial-blue)

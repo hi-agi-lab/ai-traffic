@@ -5,8 +5,6 @@
 **交通事件三域视频分析：遗撒散落物 + 事故复合评分分级 + 拥堵监测。疑似/确认两级口径，认定权在交管。**
 
 ![python](https://img.shields.io/badge/python-3.8%2B-blue)
-<!-- 发布时将 OWNER/REPO 替换为实际仓库路径, 并将 ci.yml 复制到 .github/workflows/ci.yml -->
-![ci](https://img.shields.io/badge/CI-pending-lightgrey)
 ![deps](https://img.shields.io/badge/core%20deps-numpy-orange)
 ![tests](https://img.shields.io/badge/tests-40%20passed-brightgreen)
 ![license](https://img.shields.io/badge/license-Commercial-blue)
